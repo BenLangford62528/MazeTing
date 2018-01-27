@@ -21,8 +21,8 @@ public class Main {
 
     private static void launch() {
         Image image = new Image("/face2.jpg");
-        int windowWidth = (int)image.getWidth();
-        int windowHeight = (int)image.getHeight();
+        int windowWidth = (int) image.getWidth();
+        int windowHeight = (int) image.getHeight();
         long a = System.currentTimeMillis();
         Stage stage = new Stage();
         stage.setTitle("maze");
@@ -61,29 +61,29 @@ public class Main {
         }
 
         int y = -1;
-        for (int x = 0; x < (windowWidth*windowHeight); x++) {
-            if (x % 500 == 0 && y < windowHeight-1) y++;
+        for (int x = 0; x < (windowWidth * windowHeight); x++) {
+            if (x % 500 == 0 && y < windowHeight - 1) y++;
             if (al.get(x).equals(0)) {
                 pw.setColor(x % windowWidth, y, Color.BLACK);
-              //  pw.setColor(x % windowWidth, y, Color.rgb((int)Math.ceil(Math.random()*100),(int)Math.ceil(Math.random()*100),(int)Math.ceil(Math.random()*100)));
+                //pw.setColor(x % windowWidth, y, Color.rgb((int)Math.ceil(Math.random()*100),(int)Math.ceil(Math.random()*100),(int)Math.ceil(Math.random()*100)));
 
             } else {
+                pw.setColor(x % windowWidth, y, Color.BLUE);
                 //pw.setColor(x % windowWidth, y, Color.rgb((int)Math.ceil(Math.random()*255),(int)Math.ceil(Math.random()*255),(int)Math.ceil(Math.random()*255)));
-                pw.setColor(x%windowWidth, y, Color.BLUE);
             }
 
         }
         im.setImage(wIm);
-        long b = System.currentTimeMillis();
-        System.out.println((double)(b - a)/1000 + " seconds");
 
         try {
             BufferedImage bi = new BufferedImage(500, 500, 2);
             SwingFXUtils.fromFXImage(wIm, bi);
-            File out = new File("green.png");
+            File out = new File("out.png");
             ImageIO.write(bi, "png", out);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        long b = System.currentTimeMillis();
+        System.out.println("done in " + (double) (b - a) / 1000 + " seconds");
     }
 }
